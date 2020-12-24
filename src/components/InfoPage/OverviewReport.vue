@@ -9,32 +9,12 @@ import axios from 'axios'
 export default {
   name: 'LineChart',
   mounted () {
-    axios({
-      url: 'http://47.97.196.50:8886/api/teamRank',
-      method: 'get'
-    }).then(res => {
-      let data = res.data.data
-      let groups = []
-      let rank = []
-      let items = []
-      for (let key in data) {
-        // groups.push(key)
-        // rank.push(data[key])
-        items.push({
-          key: key,
-          value: data[key]
-        })
-      }
-      items.sort((a, b) => b.value - a.value)
-      for (let index in items) {
-        groups.push(items[index].key)
-        rank.push(items[index].value.toFixed(3))
-      }
+    
       let myChart = echarts.init(this.$refs.card)
       let index = 0
       let colorList = ['#f36c6c', '#E2D776', '#57BD9F', '#7597EB']
-      // let groups = ['第一组', '第二', '第三', '第四', '第五']
-      // let rank = [0.9, 0.8, 0.45, 0.35, 0.1]
+      let groups = ['第一组', '第二组', '第三组', '第四组', '第五组']
+       let rank = [0.9, 0.8, 0.45, 0.35, 0.1]
       let option = {
         backgroundColor: '#323a5e',
         tooltip: {
@@ -184,7 +164,7 @@ export default {
         ]
       }
       myChart.setOption(option)
-    })
+    
   }
 }
 </script>

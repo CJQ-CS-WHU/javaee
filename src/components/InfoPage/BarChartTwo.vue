@@ -9,7 +9,7 @@ export default {
   name: 'BarChartTwo',
   mounted () {
     let myChart = echarts.init(this.$refs.card)
-    let xAxisData = ['张俊杰4', '李季东', 'chen', '夏沁菡']
+    let xAxisData = ['小红', '小明', '小勇']
     let seriesData = [60, 70, 70, 40]
     var option = {
       toolbox: {
