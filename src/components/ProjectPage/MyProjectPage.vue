@@ -46,6 +46,12 @@
                         <el-form-item label="项目名称">
                             <el-input v-model="createForm.projectName" round style="width:250px"></el-input>
                         </el-form-item>
+                        <el-form-item label="当前迭代">
+                            <el-input v-model="createForm.currIteration" round style="width:250px"></el-input>
+                        </el-form-item>
+                        <el-form-item label="角色">
+                            <el-input v-model="createForm.role" round style="width:250px"></el-input>
+                        </el-form-item>
                         <el-form-item label="设为当前项目">
                             <el-switch v-model="currentFlag" @click="handleSetCurrent"></el-switch>
                         </el-form-item>
@@ -255,39 +261,54 @@ export default {
 
         //创建项目提交处理函数
         onSubmit() {
-            if(this.createForm.name!=""){
-                axios({
-                    url: '/rest/teamProject',
-                    method: 'post',
-                    data: {
-                        teamProjectName: this.createForm.name
-                        }
-                    }).then(Response => {
-                        console.log('onSubmit response')
-                        console.log(Response)
-                        this.createForm.projectId=Response.data.data.teamProjectId
-                        axios({
-                            url:'/rest/teamRelationship',
-                            method:'post',
-                            data:{
-                                teamProjectId: Response.data.data.teamProjectId,
-                                userId: this.userInfo.userId,
-                                userState:  "队长"
-                            }
-                            }).then(Response=>{
-                                console.log('add user to project')
-                                console.log(Response)
-                                this.createForm.headerName=this.userInfo.userName
-                                this.createForm.role="队长"
-                                this.test[this.test.length]=this.createForm
-                                console.log("form")
-                                console.log(this.createForm)
-                                console.log('this.forms.length')
-                                console.log(this.forms.length)
-                            })
-                    })
+            if(this.createForm.projectName!=""){
+                console.log("b111")
+                // axios({
+                //     url: '/rest/teamProject',
+                //     method: 'post',
+                //     data: {
+                //         teamProjectName: this.createForm.name
+                //         }
+                //     }).then(Response => {
+                //         console.log('onSubmit response')
+                //         console.log(Response)
+                //         this.createForm.projectId=Response.data.data.teamProjectId
+                //         axios({
+                //             url:'/rest/teamRelationship',
+                //             method:'post',
+                //             data:{
+                //                 teamProjectId: Response.data.data.teamProjectId,
+                //                 userId: this.userInfo.userId,
+                //                 userState:  "队长"
+                //             }
+                //             }).then(Response=>{
+                //                 console.log('add user to project')
+                //                 console.log(Response)
+                //                 this.createForm.headerName=this.userInfo.userName
+                //                 this.createForm.role="队长"
+                //                 this.test[this.test.length]=this.createForm
+                //                 console.log("form")
+                //                 console.log(this.createForm)
+                //                 console.log('this.forms.length')
+                //                 console.log(this.forms.length)
+                //             })
+                //     })
+          
+            //     createForm:{
+            //     projectId:'',
+            //     projectName:'',
+            //     currIteration:'',
+            //     headerName:'',
+            //     role:''
+            // },
+                this.createForm.projectId=8
+                this.createForm.currIteration=1
+                this.createForm.headerName="陈家棋"
+                this.createForm.role="队员"
+                this.test.push(this.createForm)
+                this.createFlag=false
             }
-            this.createFlag=false
+            
         },
 
         //加入项目处理函数

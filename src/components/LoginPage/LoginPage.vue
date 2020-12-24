@@ -45,11 +45,18 @@ export default {
     },
 
     registerHandler(){
-      //this.register(this.info)
+      this.login(this.info)
+      console.log('login/userInfo')
+      console.log(this.userInfo)
+      //this.login("test","password")
       this.$router.push('/MyProject')
+      // 假数据为空
     },
     
     skinHandler(){
+      this.login(this.info)
+      console.log('login/userInfo')
+      console.log(this.userInfo)
       //this.login("test","password")
       this.$router.push('/MyProject')
     }

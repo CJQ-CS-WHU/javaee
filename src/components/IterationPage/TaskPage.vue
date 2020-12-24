@@ -203,44 +203,171 @@ export default {
   name: 'TaskBoardMain',
   mounted () {
     // 初始化界面获得所有任务的数据
-    axios({
-      url: 'http://47.97.196.50:8886/api/userNameForAll',
-      method: 'get',
-      params: {
-        userName: '张俊杰4'
-      }
-    }).then(Response => {
-      var temdate = []
-      Response.data.data.forEach(element => {
-        this.teamProjectId = element.teamProjectId
-        console.log(this.teamProjectId)
-        this.teamProjectName = element.teamProjectName
-        console.log(this.teamProjectName)
-        this.ExecutorVOs = element.userVOs
-        console.log(this.userVOs)
-        this.iterationVOs = element.iterationVOs
-        console.log(this.iterationVOs)
-        element.iterationVOs.forEach(iteration => {
-          iteration.taskVOs.forEach(task => {
-            temdate.push(task)
-          })
-        })
-        this.taskVOs = temdate
-        console.log(this.taskVOs)
-        this.total = this.taskVOs.length
-      })
-    })
+    // axios({
+    //   url: 'http://47.97.196.50:8886/api/userNameForAll',
+    //   method: 'get',
+    //   params: {
+    //     userName: '张俊杰4'
+    //   }
+    // }).then(Response => {
+    //   var temdate = []
+    //   Response.data.data.forEach(element => {
+    //     this.teamProjectId = element.teamProjectId
+    //     console.log(this.teamProjectId)
+    //     this.teamProjectName = element.teamProjectName
+    //     console.log(this.teamProjectName)
+    //     this.ExecutorVOs = element.userVOs
+    //     console.log(this.userVOs)
+    //     this.iterationVOs = element.iterationVOs
+    //     console.log(this.iterationVOs)
+    //     element.iterationVOs.forEach(iteration => {
+    //       iteration.taskVOs.forEach(task => {
+    //         temdate.push(task)
+    //       })
+    //     })
+    //     this.taskVOs = temdate
+    //     console.log(this.taskVOs)
+    //     this.total = this.taskVOs.length
+    //   })
+    // })
+
   },
   data () {
     return {
-      teamProjectId: '',
-      teamProjectName: '',
+      teamProjectId: '39',
+      teamProjectName: "AI开放平台",
       // 迭代集合
-      iterationVOs: [],
+      iterationVOs: [
+          {
+                    iterationId: 47,
+                    taskVOs: [
+                        {
+                            taskId: 49,
+                            taskName: "第三个个测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "紧急",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        }
+                    ],
+                    iterationState: "测试中",
+                    iterationName: "第二次迭代",
+                    iterationBeginTime: "2019-10-20 12:12",
+                    iterationEndTime: "2020-10-20 12:12"
+                },
+                {
+                    iterationId: 43,
+                    taskVOs: [
+                        {
+                            taskId: 45,
+                            taskName: "修改的测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "一般",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        },
+                        {
+                            taskId: 48,
+                            taskName: "第三个个测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "紧急",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        }
+                    ],
+                    iterationState: "开发中",
+                    iterationName: "第一次迭代",
+                    iterationBeginTime: "2019-10-20 12:12",
+                    iterationEndTime: "2020-10-20 12:12"
+                }    
+      ],
       // 执行人集合
-      ExecutorVOs: [],
+      ExecutorVOs: [
+                {
+                    userName: "张俊杰3",
+                    userId: 37,
+                    userState: "队员"
+                },
+                {
+                    userName: "张俊杰2",
+                    userId: 36,
+                    userState: "队员"
+                },
+                {
+                    userName: "张俊杰",
+                    userId: 35,
+                    userState: "队长"
+                }
+      ],
       // 任务集合
-      taskVOs: [],
+      taskVOs: [
+        {
+                            taskId: 45,
+                            taskName: "修改的测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "一般",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        },
+                        {
+                            taskId: 48,
+                            taskName: "第三个个测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "紧急",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        },
+                  {
+                            taskId: 49,
+                            taskName: "第三个个测试任务",
+                            taskRemark: "前端可视化",
+                            taskState: "开发中",
+                            taskEndTime: "2020-10-20 12:12",
+                            taskBeginTime: "2019-10-20 12:12",
+                            endTime: "2020-10-20 12:12",
+                            taskPriority: "紧急",
+                            taskExecutor: {
+                                userName: "张俊杰3",
+                                userId: 37,
+                                userState: null
+                            }
+                        }
+      ],
       // 临时存储新任务
       newtask: {
         iterationId: '',
@@ -301,33 +428,33 @@ export default {
   },
   methods: {
     refresh () {
-      axios({
-        url: 'http://47.97.196.50:8886/api/userNameForAll',
-        method: 'get',
-        params: {
-          userName: '张俊杰4'
-        }
-      }).then(Response => {
-        var temdate = []
-        Response.data.data.forEach(element => {
-          this.teamProjectId = element.teamProjectId
-          console.log(this.teamProjectId)
-          this.teamProjectName = element.teamProjectName
-          console.log(this.teamProjectName)
-          this.ExecutorVOs = element.userVOs
-          console.log(this.userVOs)
-          this.iterationVOs = element.iterationVOs
-          console.log(this.iterationVOs)
-          element.iterationVOs.forEach(iteration => {
-            iteration.taskVOs.forEach(task => {
-              temdate.push(task)
-            })
-          })
-          this.taskVOs = temdate
-          this.total = this.taskVOs.length
-          console.log(this.taskVOs)
-        })
-      })
+      // axios({
+      //   url: 'http://47.97.196.50:8886/api/userNameForAll',
+      //   method: 'get',
+      //   params: {
+      //     userName: '张俊杰4'
+      //   }
+      // }).then(Response => {
+      //   var temdate = []
+      //   Response.data.data.forEach(element => {
+      //     this.teamProjectId = element.teamProjectId
+      //     console.log(this.teamProjectId)
+      //     this.teamProjectName = element.teamProjectName
+      //     console.log(this.teamProjectName)
+      //     this.ExecutorVOs = element.userVOs
+      //     console.log(this.userVOs)
+      //     this.iterationVOs = element.iterationVOs
+      //     console.log(this.iterationVOs)
+      //     element.iterationVOs.forEach(iteration => {
+      //       iteration.taskVOs.forEach(task => {
+      //         temdate.push(task)
+      //       })
+      //     })
+      //     this.taskVOs = temdate
+      //     this.total = this.taskVOs.length
+      //     console.log(this.taskVOs)
+      //   })
+      // })
     },
     // 初始化新建任务窗口
     newTaskDialog () {
@@ -341,28 +468,33 @@ export default {
       this.newtask.taskVOs[0].taskExecutor.userId = ''
       this.newTaskDialogVisible = true
     },
+
     newTaskMethod () {
-      axios({
-        url: 'http://47.97.196.50:8886/rest/task',
-        method: 'post',
-        data: {
-          iterationId: this.newtask.iterationId,
-          taskVOs: [{
-            taskName: this.newtask.taskVOs[0].taskName,
-            taskRemark: this.newtask.taskVOs[0].taskRemark,
-            taskState: this.newtask.taskVOs[0].taskState,
-            taskEndTime: this.newtask.taskVOs[0].taskEndTime,
-            taskBeginTime: this.newtask.taskVOs[0].taskBeginTime,
-            endTime: null,
-            taskPriority: this.newtask.taskVOs[0].taskPriority,
-            taskExecutor: {
-              userId: this.newtask.taskVOs[0].taskExecutor.userId
-            }
-          }]
-        }
-      }).then(Response => { this.refresh() })
+      // axios({
+      //   url: 'http://47.97.196.50:8886/rest/task',
+      //   method: 'post',
+      //   data: {
+      //     iterationId: this.newtask.iterationId,
+      //     taskVOs: [{
+      //       taskName: this.newtask.taskVOs[0].taskName,
+      //       taskRemark: this.newtask.taskVOs[0].taskRemark,
+      //       taskState: this.newtask.taskVOs[0].taskState,
+      //       taskEndTime: this.newtask.taskVOs[0].taskEndTime,
+      //       taskBeginTime: this.newtask.taskVOs[0].taskBeginTime,
+      //       endTime: null,
+      //       taskPriority: this.newtask.taskVOs[0].taskPriority,
+      //       taskExecutor: {
+      //         userId: this.newtask.taskVOs[0].taskExecutor.userId
+      //       }
+      //     }]
+      //   }
+      // }).then(Response => { this.refresh() })
+      // this.newTaskDialogVisible = false
+      console.log("新建一个任务")
+      this.taskVOs.push(this.newtask.taskVOs[0])
       this.newTaskDialogVisible = false
     },
+
     editTaskDialog (task) {
       this.editTask.taskId = task.taskId
       this.editTask.taskName = task.taskName
@@ -375,33 +507,48 @@ export default {
       this.editTask.taskExecutor.userId = task.taskExecutor.userId
       this.editTaskDialogVisible = true
     },
+
     taskEdit () {
-      axios({
-        url: 'http://47.97.196.50:8886/rest/task',
-        method: 'put',
-        data: {
-          taskId: this.editTask.taskId,
-          taskName: this.editTask.taskName,
-          taskRemark: this.editTask.taskRemark,
-          taskState: this.editTask.taskState,
-          taskEndTime: this.editTask.taskEndTime,
-          taskBeginTime: this.editTask.taskBeginTime,
-          endTime: this.editTask.endTime,
-          taskPriority: this.editTask.taskPriority,
-          taskExecutor: {
-            userId: this.editTask.taskExecutor.userId
-          }
-        }
-      }).then(Response => { this.refresh() })
+      // axios({
+      //   url: 'http://47.97.196.50:8886/rest/task',
+      //   method: 'put',
+      //   data: {
+      //     taskId: this.editTask.taskId,
+      //     taskName: this.editTask.taskName,
+      //     taskRemark: this.editTask.taskRemark,
+      //     taskState: this.editTask.taskState,
+      //     taskEndTime: this.editTask.taskEndTime,
+      //     taskBeginTime: this.editTask.taskBeginTime,
+      //     endTime: this.editTask.endTime,
+      //     taskPriority: this.editTask.taskPriority,
+      //     taskExecutor: {
+      //       userId: this.editTask.taskExecutor.userId
+      //     }
+      //   }
+      // }).then(Response => { this.refresh() })
+      this.$set(this.taskVOs,0,this.editTask)
       this.editTaskDialogVisible = false
     },
+
     taskDelete (task) {
-      axios({
-        url: 'http://47.97.196.50:8886/rest/task/' + task.taskId,
-        method: 'delete'
-      }).then(Response => { this.refresh() })
+    //   axios({
+    //     url: 'http://47.97.196.50:8886/rest/task/' + task.taskId,
+    //     method: 'delete'
+    //   }).then(Response => { this.refresh() })
+    // },
+    console.log("ok")
+    console.log(task)
+    this.taskVOs.forEach((item,index)=>{
+      if(item.taskId==task.taskId){
+        this.taskVOs.splice(index,1)
+      }
+    })
+    this.taskOVs.splice(this.taskOVs.indexOf(task),1)
+    console.log(this.taskVOs)
     },
-    currentChange:function(currentPage){
+
+
+    currentChange(currentPage){
         this.currentPage = currentPage;
       }
   }
