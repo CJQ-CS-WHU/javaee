@@ -9,40 +9,22 @@ import axios from 'axios'
 export default {
   name: 'PieChart',
   mounted () {
-    axios({
-      url: 'http://47.97.196.50:8886/api/taskAssigned',
-      method: 'get',
-      params: {
-        teamProjectId: 2
-      }
-    }).then(res => {
-      let data = res.data.data
-      let echartData = []
-      for (let key in data) {
-        echartData.push({
-          name: key,
-          value: data[key]
-        })
-      }
-
+   
       let myChart = echarts.init(this.$refs.card)
-      // let echartData = [{
-      //   name: '待认领',
-      //   value: '10'
-      // },
-      // {
-      //   name: '张俊杰',
-      //   value: '20'
-      // },
-      // {
-      //   name: '张俊杰2',
-      //   value: '30'
-      // },
-      // {
-      //   name: '张俊杰3',
-      //   value: '40'
-      // }
-      // ]
+      let echartData = [
+      {
+        name: '小红',
+        value: '20'
+      },
+      {
+        name: '小明',
+        value: '10'
+      },
+      {
+        name: '小勇',
+        value: '15'
+      }
+      ]
       let total = echartData.reduce((a, b) => {
         return a + b.value * 1
       }, 0)
@@ -176,7 +158,7 @@ export default {
         ]
       }
       myChart.setOption(option)
-    })
+    
   }
 }
 </script>
